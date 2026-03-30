@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BharatCraft – Discover Indian Artisans</title>
+  <meta name="description" content="BharatCraft connects you with India's finest artisans. Shop handmade traditional products, explore artisans on the map, and experience India's rich cultural heritage." />
+  <meta property="og:title" content="BharatCraft – Discover Indian Artisans" />
+  <meta property="og:description" content="Shop handmade traditional Indian products and connect with local artisans." />
+  <meta property="og:type" content="website" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#c84b31" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/navbar.css" />
+  <link rel="stylesheet" href="styles/home.css" />
+  <link rel="stylesheet" href="styles/products.css" />
+  <link rel="stylesheet" href="styles/product-detail.css" />
+  <link rel="stylesheet" href="styles/map.css" />
+  <link rel="stylesheet" href="styles/cart.css" />
+  <link rel="stylesheet" href="styles/checkout.css" />
+  <link rel="stylesheet" href="styles/orders.css" />
+  <link rel="stylesheet" href="styles/wishlist.css" />
+  <link rel="stylesheet" href="styles/dashboard.css" />
+  <link rel="stylesheet" href="styles/auth.css" />
+  <link rel="stylesheet" href="styles/artisan-profile.css" />
+  <link rel="stylesheet" href="styles/polish.css" />
+  <link rel="stylesheet" href="styles/premium-polish.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Firebase v10 compat (CDN) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+  <!-- Google Maps -->
+  <script>
+    window.GOOGLE_MAPS_API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY';
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏺</text></svg>" />
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="global-loader" id="global-loader">
+    <div class="gl-mandala"></div>
+    <div class="gl-text">BharatCraft</div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress-container"><div class="scroll-progress-bar" id="scroll-bar"></div></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#/" class="nav-logo" id="nav-logo">
+        <span class="logo-icon">🏺</span>
+        <span class="logo-text">Bharat<span class="logo-accent">Craft</span></span>
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#/" class="nav-link" data-route="/">Home</a>
+        <a href="#/products" class="nav-link" data-route="/products">Products</a>
+        <a href="#/map" class="nav-link" data-route="/map">🗺️ Map</a>
+        <a href="#/wishlist" class="nav-link" data-route="/wishlist">❤️ Wishlist</a>
+        <a href="#/orders" class="nav-link" data-route="/orders">📦 Orders</a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Search Trigger -->
+        <button class="nav-search-btn" id="nav-search-btn" title="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="#/cart" class="nav-cart-btn" id="nav-cart-btn">
+          <svg id="nav-cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition:0.3s;"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+        <div class="nav-auth" id="nav-auth">
+          <a href="#/auth" class="btn-primary btn-sm" style="font-size:0.85rem; padding:8px 16px;">Sign In</a>
+        </div>
+        <div class="nav-user hidden" id="nav-user">
+          <div class="user-avatar-btn" id="user-avatar-btn">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="User" class="user-avatar" id="user-avatar-img" />
+            <span class="user-name-short" id="user-name-short">U</span>
+          </div>
+          <div class="user-dropdown" id="user-dropdown">
+            <div class="dropdown-user-info">
+              <span id="dropdown-user-name">User</span>
+              <span id="dropdown-user-role" class="role-badge">Customer</span>
+            </div>
+            <hr />
+            <a href="#/dashboard" class="dropdown-item" id="dashboard-link">📊 Dashboard</a>
+            <a href="#/orders" class="dropdown-item">📦 My Orders</a>
+            <a href="#/wishlist" class="dropdown-item">❤️ Wishlist</a>
+            <hr />
+            <button class="dropdown-item danger" id="logout-btn">🚪 Logout</button>
+          </div>
+        </div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+
+    <!-- Global Search Bar (slides down) -->
+    <div class="global-search-bar" id="global-search-bar">
+      <div class="gsb-inner">
+        <input type="text" id="global-search-input" placeholder="Search handcrafted pottery, artisan states, jewelry..." autocomplete="off" />
+        <button id="global-search-submit">Search</button>
+      </div>
+      <div class="gsb-results" id="gsb-results"></div>
+    </div>
+  </nav>
+
+  <!-- Main App Container -->
+  <main id="app" class="app-container"></main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="logo-icon">🏺</span>
+        <span class="logo-text">Bharat<span class="logo-accent">Craft</span></span>
+        <p>Connecting the world with India's finest artisans. Preserving culture, enabling livelihoods.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#/products">All Products</a>
+          <a href="#/map">Artisan Map</a>
+          <a href="#/products?category=textiles">Textiles</a>
+          <a href="#/products?category=pottery">Pottery</a>
+        </div>
+        <div class="footer-col">
+          <h4>For Artisans</h4>
+          <a href="#/auth?role=artisan">Join as Artisan</a>
+          <a href="#/dashboard">Artisan Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 BharatCraft. Made with ❤️ in India. All rights reserved.</p>
+      <div class="footer-badges">
+        <span>🔒 Secure Payments</span>
+        <span>🚚 Pan-India Delivery</span>
+        <span>♻️ Sustainable Crafts</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toasts & Modals -->
+  <div class="toast-container" id="toast-container"></div>
+  <div class="lightbox-overlay" id="lightbox-overlay">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <button class="lightbox-prev" id="lightbox-prev">‹</button>
+    <img src="" alt="" class="lightbox-img" id="lightbox-img" />
+    <button class="lightbox-next" id="lightbox-next">›</button>
+  </div>
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-box" id="modal-box">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- PWA Install Prompt -->
+  <div class="pwa-prompt" id="pwa-prompt">
+    <div class="pwa-icon">🏺</div>
+    <div class="pwa-text">
+       <h4>Install BharatCraft App</h4>
+       <p>For faster native access and offline discovery capabilities.</p>
+    </div>
+    <div class="pwa-actions">
+       <button class="btn-pwa btn-pwa-close" id="pwa-close">Later</button>
+       <button class="btn-pwa btn-pwa-add" id="pwa-add">Install</button>
+    </div>
+  </div>
+  
+  <!-- Back to Top UI -->
+  <button class="back-to-top" id="backTopBtn" title="Go to top">↑</button>
+
+  <!-- Core JS -->
+  <script src="js/utils.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/maps.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/search.js"></script>
+
+  <!-- Page JS -->
+  <script src="pages/home.js"></script>
+  <script src="pages/products.js"></script>
+  <script src="pages/product-detail.js"></script>
+  <script src="pages/map-view.js"></script>
+  <script src="pages/cart-page.js"></script>
+  <script src="pages/checkout.js"></script>
+  <script src="pages/orders.js"></script>
+  <script src="pages/wishlist-page.js"></script>
+  <script src="pages/auth-page.js"></script>
+  <script src="pages/artisan-profile.js"></script>
+  <script src="pages/artisan-dashboard.js"></script>
+  <script src="pages/admin-dashboard.js"></script>
+  <script src="js/seed.js"></script>
+
+  <!-- App Init, PWA, & Extra Polish bindings -->
+  <script>
+    // 1. Loading Screen
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('global-loader').classList.add('hidden');
+      }, 1500);
+    });
+
+    // 2. Scroll Logic (Progress Bar + Back to top)
+    const scrollBar = document.getElementById('scroll-bar');
+    const backBtn = document.getElementById('backTopBtn');
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if(scrollBar) scrollBar.style.width = scrolled + '%';
+      
+      if(winScroll > 300) backBtn.classList.add('visible');
+      else backBtn.classList.remove('visible');
+    });
+    
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 3. PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => console.log('ServiceWorker registered bounds successful. Scope:', reg.scope))
+          .catch((err) => console.log('ServiceWorker setup localized bypass.', err));
+      });
+    }
+
+    // 4. Custom PWA prompt installation handling
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      setTimeout(() => document.getElementById('pwa-prompt').classList.add('show'), 4000); 
+    });
+    
+    document.getElementById('pwa-add').addEventListener('click', async () => {
+      document.getElementById('pwa-prompt').classList.remove('show');
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('User response:', outcome);
+        deferredPrompt = null;
+      }
+    });
+
+    document.getElementById('pwa-close').addEventListener('click', () => {
+      document.getElementById('pwa-prompt').classList.remove('show');
+    });
+
+    // Fire Router!
+    document.addEventListener('DOMContentLoaded', () => {
+      window.addEventListener('unhandledrejection', function(event) {
+        if (event.reason && event.reason.code && event.reason.code.startsWith('auth/')) {
+          window.utils?.toast && window.utils.toast(event.reason.message, 'error');
+        } else if (event.reason && event.reason.name === 'FirebaseError') {
+          window.utils?.toast && window.utils.toast('Network configuration issue. Active data will map from local cache arrays safely.', 'warning');
+        } else {
+          console.warn('Unhandled Promise Rejection Captured:', event.reason);
+        }
+        event.preventDefault(); 
+      });
+
+      initRouter();
+      
+      // Override cart icon to bounce on update natively
+      const originalCartAdd = window.cartModule?.add;
+      if(originalCartAdd) {
+        window.cartModule.add = (...args) => {
+           originalCartAdd(...args);
+           const pCart = document.getElementById('nav-cart-icon');
+           if(pCart) {
+              pCart.classList.remove('bounce-anim');
+              void pCart.offsetWidth; // trigger reflow
+              pCart.classList.add('bounce-anim');
+           }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

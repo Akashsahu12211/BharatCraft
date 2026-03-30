@@ -1,0 +1,85 @@
+/* ============================================================
+   ORDERS PAGE STYLES
+============================================================ */
+
+.orders-page { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.5rem; background: var(--bg); min-height: 80vh; }
+.orders-header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+.orders-header h1 { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--text-primary); }
+
+.ord-filters { display: flex; gap: 10px; margin-bottom: 2rem; overflow-x: auto; scrollbar-width: none; }
+.ord-filters::-webkit-scrollbar { display: none; }
+.ord-filter-btn { padding: 8px 16px; background: white; border: 1px solid var(--border-strong); border-radius: 20px; font-weight: 600; font-size: 0.9rem; color: var(--text-secondary); cursor: pointer; transition: 0.2s; white-space: nowrap; }
+.ord-filter-btn:hover { border-color: var(--saffron); color: var(--primary); }
+.ord-filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* Accordion Order Card */
+.ord-card { background: white; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 1.5rem; overflow: hidden; }
+.ord-head { padding: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; transition: 0.2s; }
+.ord-head:hover { background: #fafafa; }
+.oh-left { display: flex; flex-direction: column; gap: 6px; }
+.oh-id { font-weight: 800; font-size: 1.1rem; color: var(--text-primary); }
+.oh-date { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+
+.oh-right { display: flex; align-items: center; gap: 1.5rem; }
+.ord-badge { padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-blue { background: #dbeafe; color: #1e40af; } /* Confirmed */
+.badge-orange { background: #ffedd5; color: #c2410c; } /* Processing */
+.badge-purple { background: #f3e8ff; color: #7e22ce; } /* Shipped */
+.badge-green { background: #dcfce7; color: #166534; }  /* Delivered */
+.badge-red { background: #fee2e2; color: #b91c1c; }    /* Cancelled */
+
+.ord-toggle-icon { font-size: 1.5rem; color: var(--text-muted); transition: 0.3s transform; }
+.ord-card.expanded .ord-toggle-icon { transform: rotate(180deg); }
+
+.ord-body { display: none; padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--border-strong); }
+.ord-card.expanded .ord-body { display: block; animation: slideDown 0.3s ease; }
+
+/* Timeline Tracker */
+.ord-tracker { display: flex; justify-content: space-between; position: relative; margin: 2rem 0 3rem; max-width: 600px; }
+.ord-tracker::before { content: ''; position: absolute; top: 14px; left: 0; right: 0; height: 4px; background: var(--border-strong); z-index: 1; border-radius: 2px; }
+.ot-fill { position: absolute; top: 14px; left: 0; height: 4px; background: var(--saffron); z-index: 2; transition: 0.4s; border-radius: 2px; }
+
+.ot-step { display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 3; position: relative; width: 60px; }
+.ot-circle { width: 32px; height: 32px; border-radius: 50%; background: white; border: 4px solid var(--border-strong); transition: 0.3s; }
+.ot-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; text-align: center; }
+
+.ot-step.active .ot-circle { border-color: var(--saffron); background: white; border-width: 6px; }
+.ot-step.active .ot-label { color: var(--saffron); }
+.ot-step.complete .ot-circle { background: var(--saffron); border-color: var(--saffron); }
+.ot-step.complete .ot-label { color: var(--primary); }
+
+/* Details Layout */
+.ord-grids { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-top: 1.5rem; }
+@media (max-width: 768px) { .ord-grids { grid-template-columns: 1fr; } }
+.og-col h4 { font-family: var(--font-heading); font-size: 1.1rem; border-bottom: 1px solid var(--border-strong); padding-bottom: 8px; margin-bottom: 1rem; color: var(--text-primary); }
+
+.ord-item-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.o-img { width: 50px; height: 50px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border); }
+.o-info { flex: 1; }
+.o-title { font-weight: 700; font-size: 0.95rem; color: var(--text-primary); }
+.o-meta { font-size: 0.85rem; color: var(--text-muted); }
+.o-price { font-weight: 800; font-size: 1rem; }
+
+.ord-summ-line { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.95rem; color: var(--text-secondary); }
+.ord-summ-total { border-top: 1px dashed var(--border-strong); margin-top: 10px; padding-top: 10px; font-weight: 900; font-size: 1.2rem; color: var(--primary); display: flex; justify-content: space-between; }
+
+.ord-addr p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5; margin: 0; }
+
+/* Actions */
+.ord-actions { display: flex; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.btn-oa { padding: 10px 16px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
+.btn-oa-primary { background: var(--primary); color: white; }
+.btn-oa-primary:hover { background: var(--saffron); }
+.btn-oa-outline { background: white; border: 1px solid var(--border-strong); color: var(--text-primary); }
+.btn-oa-outline:hover { background: var(--bg-elevated); border-color: var(--text-primary); }
+.btn-oa-danger { background: #fee2e2; color: var(--crimson); }
+.btn-oa-danger:hover { background: var(--crimson); color: white; }
+
+/* Review / Cancel Modals logic mapped visually via JS internal triggers */
+.tracking-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; }
+.tracking-overlay.open { display: flex; }
+.tracking-box { background: white; width: 100%; max-width: 500px; border-radius: 12px; padding: 2rem; position: relative; animation: slideUp 0.3s ease; }
+
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+

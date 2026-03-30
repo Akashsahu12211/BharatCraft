@@ -1,0 +1,100 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ==========================================================
+    // Core Functions
+    // ==========================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+    // Assumes custom claims are set for admins
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.admin == true;
+    }
+    function isVerifiedArtisan(artisanId) {
+      let artisanDoc = get(/databases/$(database)/documents/artisans/$(artisanId));
+      return artisanDoc != null && artisanDoc.data.verified == true;
+    }
+
+    // ==========================================================
+    // Users
+    // Users can only read/write their own user document
+    // ==========================================================
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    // ==========================================================
+    // Products
+    // Anyone can read, only verified artisans or admins can write
+    // ==========================================================
+    match /products/{productId} {
+      allow read: if true;
+      allow create: if isAdmin() || (isOwner(request.resource.data.artisanId) && isVerifiedArtisan(request.resource.data.artisanId));
+      allow update, delete: if isAdmin() || (isOwner(resource.data.artisanId) && isVerifiedArtisan(resource.data.artisanId));
+    }
+
+    // ==========================================================
+    // Orders
+    // Only the buyer and the artisan involved can read
+    // ==========================================================
+    match /orders/{orderId} {
+      allow read: if isAdmin() || isOwner(resource.data.buyerId) || isOwner(resource.data.artisanId);
+      allow create: if isAuthenticated() && request.resource.data.buyerId == request.auth.uid;
+      // Buyers can update (e.g., cancel), Artisans can update (e.g., ship)
+      allow update: if isOwner(resource.data.buyerId) || isOwner(resource.data.artisanId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ==========================================================
+    // Reviews
+    // Authenticated users can create, owner can delete
+    // ==========================================================
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if isOwner(resource.data.userId) || isAdmin();
+      allow delete: if isOwner(resource.data.userId) || isAdmin();
+    }
+
+    // ==========================================================
+    // Artisans
+    // Anyone can read, only admin can approve
+    // ==========================================================
+    match /artisans/{artisanId} {
+      allow read: if true;
+      
+      // Artisans can create their unverified profile
+      allow create: if isOwner(artisanId) && request.resource.data.verified == false;
+      
+      // Artisans can update their profile, but CANNOT change the verified field to true
+      allow update: if isAdmin() || (isOwner(artisanId) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'bio', 'location', 'avatar', 'coverImage']));
+      
+      allow delete: if isAdmin();
+    }
+
+    // ==========================================================
+    // Wishlists
+    // Private per user
+    // ==========================================================
+    match /wishlists/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    // ==========================================================
+    // Custom Requests
+    // Only involved user and artisan can read
+    // ==========================================================
+    match /customRequests/{requestId} {
+      allow read: if isOwner(resource.data.buyerId) || isOwner(resource.data.artisanId) || isAdmin();
+      allow create: if isAuthenticated() && request.resource.data.buyerId == request.auth.uid;
+      allow update: if isOwner(resource.data.buyerId) || isOwner(resource.data.artisanId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+  }
+}
