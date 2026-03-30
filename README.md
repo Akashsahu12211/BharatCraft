@@ -1,87 +1,147 @@
-# BharatCraft
+BharatCraft
+Discover the Soul of India's Craft
 
-**Discover the Soul of India's Craft.**
-BharatCraft is a premium e-commerce platform connecting users with authentic Indian artisans. It provides a robust marketplace for handcrafted products, dynamic map-based discovery, and custom order tracking across a fully responsive Progressive Web App architecture.
+BharatCraft is a premium e-commerce platform designed to connect users with authentic Indian artisans. It enables seamless discovery, purchase, and tracking of handcrafted products while empowering artisans with digital tools to manage and grow their businesses.
 
----
+Built as a Progressive Web App (PWA), BharatCraft delivers a fast, responsive, and offline-capable experience.
 
-## 🚀 Features
-- **Role-Based Authentication**: Secure login/signup differentiating Customers, Artisans, and Admins.
-- **E-Commerce Flows**: Live filtering dual-slider product grids, secure shopping carts, and a step-by-step interactive checkout flow calculating localized delivery algorithms natively.
-- **Artisan Ecosystem**: Interactive Admin/Artisan dashboards permitting direct inventory management, customized fulfillment tracking, and seamless revenue plotting.
-- **Map-Based Discovery**: Interactive Google Maps instances clustering specialized UI overlay markers dynamically tracking artisanal heritage geographically.
-- **PWA Ready**: Offline-first service caching routing seamlessly through `manifest.json`.
-- **Wishlists & Orders**: Collapsible accordion logic mapping visual timeline delivery graphics natively. 
+🚀 Key Features
+🔐 Authentication & Roles
+Secure role-based authentication
+Separate flows for:
+Customers
+Artisans
+Admins
+🛒 E-Commerce System
+Dynamic product listings with advanced filtering
+Interactive shopping cart
+Step-by-step checkout process
+Location-based delivery cost calculation
+🧑‍🎨 Artisan Ecosystem
+Dedicated dashboards for artisans and admins
+Inventory management system
+Order fulfillment tracking
+Revenue analytics and insights
+🗺️ Map-Based Discovery
+Google Maps integration
+Clustered artisan locations
+Geo-based exploration of crafts across India
+📦 Orders & Wishlist
+Wishlist functionality
+Order history with timeline tracking
+Visual delivery progress indicators
+⚡ Progressive Web App (PWA)
+Offline-first architecture
+Service worker caching
+Installable on devices
+Smooth navigation via manifest.json
+🛠️ Tech Stack
+Frontend: HTML, CSS, JavaScript
+Backend (BaaS): Firebase
+Authentication
+Firestore Database
+Storage
+APIs: Google Maps JavaScript API
+Architecture: Single Page Application (SPA)
+⚙️ Setup & Installation
+1. Clone Repository
+git clone <your-repo-url>
+cd BharatCraft
+2. Firebase Configuration
+Go to Firebase Console
+Create a new project
+Add a Web App
+Open:
+js/firebase-config.js
+Replace the firebaseConfig object with your credentials
+Enable:
+Authentication (Email/Password)
+Firestore Database
+Storage (optional)
+3. Firestore Security Rules
 
----
+Deploy rules using:
 
-## 🛠 Setup & Installation
-
-**1. Clone the repository / Open the folder**
-Navigate to the root directory where `index.html` is located.
-
-**2. Configure Firebase**
-1. Go to the [Firebase Console](https://console.firebase.google.com).
-2. Create a new project and add a Web App.
-3. Open `js/firebase-config.js` and locate the `firebaseConfig` object.
-4. Replace the dummy config values with your actual Firebase API keys.
-5. In your Firebase Console, enable:
-   * **Authentication**: Email/Password provider
-   * **Firestore Database**
-   * **Storage** (optional, for image uploads)
-
-**3. Set Up Security Rules**
-Deploy the robust database security rules mapped inside `firestore.rules`:
-\`\`\`bash
 firebase deploy --only firestore:rules
-\`\`\`
-*(Alternatively, copy the contents of `firestore.rules` directly into the "Rules" tab in your Firebase Console under Firestore Database).*
 
-**4. Google Maps API**
-1. Generate an API key from the [Google Cloud Console](https://console.cloud.google.com).
-2. Ensure the "Maps JavaScript API" is enabled.
-3. Open `index.html` and locate line 49:
-   \`\`\`javascript
-   window.GOOGLE_MAPS_API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY';
-   \`\`\`
-   Replace the placeholder with your actual Maps key to enable Map Discovery natively.
+Or manually paste rules in Firebase Console → Firestore → Rules
 
----
+4. Google Maps Setup
+Go to Google Cloud Console
+Generate API Key
+Enable Maps JavaScript API
+Update in index.html:
+window.GOOGLE_MAPS_API_KEY = 'YOUR_API_KEY';
+▶️ Running Locally
 
-## 🖥️ Running Locally & Seeding Data
+No backend server required 🚀
 
-You do not need a complex Node.js server. The application maps entirely natively over static web bounds utilizing Firebase CDN structures!
+Start a local server:
+python -m http.server 8000
 
-1. Use a local server to run the project (e.g., Live Server extension in VS Code, or `python -m http.server 8000`).
-2. Open the application in your browser (usually `http://127.0.0.1:8000`).
-3. **Seed The Database:**
-   To populate your fresh Firebase Firestore with 8 authentic artisans and 24 products instantly:
-   * Open your browser's Developer Tools Console (`F12`).
-   * Type: `window.seedDatabase()` and hit Enter.
-   * Wait for the console confirmation. Refresh the page to see your catalog!
+Open:
 
----
+http://127.0.0.1:8000
+🌱 Seed Database (Important)
 
-## 🌍 Deployment
+To populate demo data:
 
-BharatCraft is deeply optimized for **Firebase Hosting**.
+Open browser DevTools (F12)
+Run:
+window.seedDatabase()
+Refresh the page
 
-1. Install Firebase CLI: `npm install -g firebase-tools`
-2. Login to your account: `firebase login`
-3. Initialize hosting (if not yet configured): `firebase init hosting`
-   * Select your project.
-   * Specify the current directory (`.`) as your public directory.
-   * Configure as a single-page app (rewrite all URLs to `/index.html`).
-4. Execute Deploy:
-   \`\`\`bash
-   firebase deploy --only hosting
-   \`\`\`
+✔️ Adds:
 
----
+8 artisans
+24 products
+🌍 Deployment (Firebase Hosting)
+1. Install Firebase CLI
+npm install -g firebase-tools
+2. Login
+firebase login
+3. Initialize Hosting
+firebase init hosting
 
-## 📁 Architecture Overview
-*   **`js/`**: Contains the core logic modules (`firebase-config.js`, `auth.js`, `cart.js`, `router.js`, `utils.js`).
-*   **`pages/`**: Single-Page Application (SPA) renderers mapping DOM strings inherently (e.g., `home.js`, `products.js`, `auth-page.js`).
-*   **`styles/`**: Granular compartmentalized CSS modules mapping component boundaries, orchestrated universally via `premium-polish.css`. 
+Select:
 
-Enjoy Exploring BharatCraft! 🇮🇳
+Project
+Public directory: .
+Single Page App: Yes
+4. Deploy
+firebase deploy --only hosting
+📁 Project Structure
+BharatCraft/
+│
+├── js/                 # Core logic modules
+│   ├── firebase-config.js
+│   ├── auth.js
+│   ├── cart.js
+│   ├── router.js
+│   └── utils.js
+│
+├── pages/              # SPA rendering modules
+│   ├── home.js
+│   ├── products.js
+│   └── auth-page.js
+│
+├── styles/             # Modular CSS
+│   └── premium-polish.css
+│
+├── index.html
+└── manifest.json
+💡 Highlights
+Fully serverless architecture
+Real-world startup-grade concept
+Combines culture + commerce + technology
+Built with scalability in mind
+📌 Future Improvements
+AI-based product recommendations
+Artisan verification system (KYC + heritage validation)
+Multi-language support (Hindi, regional languages)
+Payment gateway integration (Razorpay/Stripe)
+Mobile app version
+🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork the repo and submit a pull request.
