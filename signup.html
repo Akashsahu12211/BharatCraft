@@ -57,6 +57,18 @@
         </div>
 
         <form class="auth-form glass" data-auth-form data-mode="signup" novalidate>
+          <p class="auth-role-title">Sign up as</p>
+          <div class="auth-role-grid" role="radiogroup" aria-label="Choose account type">
+            <label class="auth-role-option">
+              <input type="radio" name="accountType" value="customer" checked data-account-type />
+              <span>Customer</span>
+            </label>
+            <label class="auth-role-option">
+              <input type="radio" name="accountType" value="artisan" data-account-type />
+              <span>Artisan</span>
+            </label>
+          </div>
+
           <label for="signupName">Full Name</label>
           <input id="signupName" type="text" name="fullName" placeholder="Your name" required />
           <p class="field-error" data-error-for="fullName"></p>
@@ -78,6 +90,22 @@
             required
           />
           <p class="field-error" data-error-for="confirmPassword"></p>
+
+          <div class="artisan-fields" data-artisan-fields hidden>
+            <label for="signupCraft">Craft Type</label>
+            <input
+              id="signupCraft"
+              type="text"
+              name="craftType"
+              placeholder="Pottery, Weaving, Metalwork"
+              disabled
+            />
+            <p class="field-error" data-error-for="craftType"></p>
+
+            <label for="signupCity">Studio City</label>
+            <input id="signupCity" type="text" name="artisanCity" placeholder="Jaipur" disabled />
+            <p class="field-error" data-error-for="artisanCity"></p>
+          </div>
 
           <button class="btn btn-primary btn-block" type="submit">Create Account</button>
 

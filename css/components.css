@@ -377,6 +377,57 @@ a {
   box-shadow: 0 0 0 3px rgba(138, 98, 41, 0.12);
 }
 
+.auth-role-title {
+  color: var(--text-main);
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.auth-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.auth-role-option {
+  position: relative;
+  display: block;
+}
+
+.auth-role-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.auth-role-option span {
+  min-height: 42px;
+  border: 1px solid var(--stroke);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--text-main);
+  font-size: 0.84rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-role-option input:checked + span {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: #fff;
+}
+
+.artisan-fields {
+  display: grid;
+  gap: 8px;
+}
+
 .field-error {
   color: #b3443b;
   min-height: 18px;

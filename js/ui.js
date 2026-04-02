@@ -176,6 +176,9 @@
     var password = String(data.get("password") || "");
     var fullName = String(data.get("fullName") || "").trim();
     var confirmPassword = String(data.get("confirmPassword") || "");
+    var accountType = String(data.get("accountType") || "customer");
+    var craftType = String(data.get("craftType") || "").trim();
+    var artisanCity = String(data.get("artisanCity") || "").trim();
     var valid = true;
 
     clearErrors(form);
@@ -200,9 +203,53 @@
         setError(form, "confirmPassword", "Passwords do not match.");
         valid = false;
       }
+
+      if (accountType === "artisan") {
+        if (craftType.length < 2) {
+          setError(form, "craftType", "Please enter your craft type.");
+          valid = false;
+        }
+
+        if (artisanCity.length < 2) {
+          setError(form, "artisanCity", "Please enter your studio city.");
+          valid = false;
+        }
+      }
     }
 
     return valid;
+  }
+
+  function initSignupRoleForms() {
+    document.querySelectorAll('[data-auth-form][data-mode="signup"]').forEach(function (form) {
+      var roleInputs = form.querySelectorAll("[data-account-type]");
+      var artisanFields = form.querySelector("[data-artisan-fields]");
+      var submitButton = form.querySelector('button[type="submit"]');
+
+      if (!roleInputs.length || !artisanFields) {
+        return;
+      }
+
+      function updateRoleUI() {
+        var selected = form.querySelector('[data-account-type]:checked');
+        var isArtisan = !!selected && selected.value === "artisan";
+
+        artisanFields.hidden = !isArtisan;
+        artisanFields.querySelectorAll("input").forEach(function (input) {
+          input.disabled = !isArtisan;
+        });
+
+        if (submitButton) {
+          submitButton.textContent = isArtisan ? "Create Artisan Account" : "Create Account";
+        }
+      }
+
+      roleInputs.forEach(function (input) {
+        input.addEventListener("change", updateRoleUI);
+      });
+
+      updateRoleUI();
+    });
   }
 
   function initAuthForms() {
@@ -236,6 +283,7 @@
     initStickyHeader();
     initSmoothAnchors();
     initRevealAnimation();
+    initSignupRoleForms();
     initAuthForms();
   });
 
