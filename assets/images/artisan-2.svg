@@ -1,0 +1,14 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' width='860' height='1080' viewBox='0 0 860 1080'>
+  <defs>
+    <linearGradient id='ga' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#f0e6da'/>
+      <stop offset='100%' stop-color='#cab498'/>
+    </linearGradient>
+  </defs>
+  <rect width='860' height='1080' fill='url(#ga)'/>
+  <circle cx='430' cy='350' r='170' fill='white' fill-opacity='0.32'/>
+  <rect x='180' y='500' width='500' height='320' rx='80' fill='white' fill-opacity='0.4'/>
+  <circle cx='430' cy='355' r='115' fill='#1f1d1a' fill-opacity='0.26'/>
+  <text x='80' y='950' font-family='Sora, Arial, sans-serif' font-size='54' font-weight='700' fill='#1f1d1a'>Tariq Lone</text>
+  <text x='80' y='1005' font-family='Sora, Arial, sans-serif' font-size='30' fill='#1f1d1a' fill-opacity='0.78'>Srinagar, Kashmir</text>
+</svg>

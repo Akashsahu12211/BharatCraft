@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Signup UI for BharatCart static website." />
+    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <title>Sign Up | BharatCart</title>
+  </head>
+  <body data-page="signup">
+    <header class="site-header" id="top">
+      <div class="container nav-shell glass">
+        <a class="brand" href="index.html" aria-label="BharatCart home">
+          <img src="assets/icons/logo.svg" alt="BharatCart logo" />
+          <span>BharatCart</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Toggle menu"
+          aria-controls="primaryMenu"
+          aria-expanded="false"
+          data-menu-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="nav-links" id="primaryMenu">
+          <a href="index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="artisans.html">Artisans</a>
+          <a href="product-details.html">Details</a>
+          <a href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+        </nav>
+
+        <a class="btn btn-small btn-ghost" href="login.html">Already Joined?</a>
+      </div>
+    </header>
+
+    <main class="auth-page container">
+      <section class="auth-shell reveal">
+        <div class="auth-copy">
+          <p class="eyebrow">Create Account</p>
+          <h1>Join The BharatCart Community</h1>
+          <p>Build your profile to discover artisans and collect meaningful handcrafted pieces.</p>
+        </div>
+
+        <form class="auth-form glass" data-auth-form data-mode="signup" novalidate>
+          <label for="signupName">Full Name</label>
+          <input id="signupName" type="text" name="fullName" placeholder="Your name" required />
+          <p class="field-error" data-error-for="fullName"></p>
+
+          <label for="signupEmail">Email</label>
+          <input id="signupEmail" type="email" name="email" placeholder="you@example.com" required />
+          <p class="field-error" data-error-for="email"></p>
+
+          <label for="signupPassword">Password</label>
+          <input id="signupPassword" type="password" name="password" placeholder="At least 8 characters" required />
+          <p class="field-error" data-error-for="password"></p>
+
+          <label for="signupConfirmPassword">Confirm Password</label>
+          <input
+            id="signupConfirmPassword"
+            type="password"
+            name="confirmPassword"
+            placeholder="Repeat password"
+            required
+          />
+          <p class="field-error" data-error-for="confirmPassword"></p>
+
+          <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+
+          <button class="btn btn-ghost btn-block google-btn" type="button" data-google-button>
+            <img src="assets/icons/google.svg" alt="Google icon" />
+            Sign up with Google
+          </button>
+
+          <p class="auth-link">Already have an account? <a href="login.html">Login now</a></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>2026 BharatCart. A premium static showcase for Indian artisans.</p>
+        <div>
+          <a href="products.html">Products</a>
+          <a href="artisans.html">Artisans</a>
+          <a href="signup.html">Join</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/ui.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

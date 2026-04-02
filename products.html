@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="BharatCart is a premium static showcase of Indian artisans, handmade products, and cultural craftsmanship."
-    />
+    <meta name="description" content="Explore curated handmade products by Indian artisans on BharatCart." />
     <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,9 +13,9 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/components.css" />
-    <title>BharatCart | Premium Artisan Showcase</title>
+    <title>Products | BharatCart</title>
   </head>
-  <body data-page="home">
+  <body data-page="products">
     <header class="site-header" id="top">
       <div class="container nav-shell glass">
         <a class="brand" href="index.html" aria-label="BharatCart home">
@@ -54,68 +51,44 @@
       </div>
     </header>
 
-    <main>
-      <section class="hero-section container reveal">
-        <div class="hero-copy">
-          <p class="eyebrow">Curated Indian Craft</p>
-          <h1>Empowering Indian Artisans</h1>
-          <p>
-            BharatCart is a portfolio-grade design concept celebrating handmade stories from every
-            corner of India. Discover mindful craftsmanship, timeless materials, and elevated
-            design.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="products.html">Explore Collection</a>
-            <a class="btn btn-ghost" href="#about">Our Story</a>
-          </div>
+    <main class="page-main container">
+      <section class="page-hero reveal">
+        <p class="eyebrow">Product Collection</p>
+        <h1>Curated Handmade Pieces</h1>
+        <p>Discover modern heirlooms crafted with heritage techniques and thoughtful detail.</p>
+      </section>
+
+      <section class="filters-wrap reveal">
+        <div class="search-shell glass">
+          <input type="search" id="productSearch" placeholder="Search products or categories" />
         </div>
-        <div class="hero-panel glass">
-          <img src="assets/images/blue-pottery.svg" alt="Featured handcrafted pottery" />
-          <div class="hero-meta">
-            <h3>Blue Pottery Vase</h3>
-            <p>Hand-finished in Jaipur</p>
-          </div>
+        <div class="category-row" id="categoryFilters">
+          <button class="chip is-active" type="button" data-category="All">All</button>
+          <button class="chip" type="button" data-category="Pottery">Pottery</button>
+          <button class="chip" type="button" data-category="Textiles">Textiles</button>
+          <button class="chip" type="button" data-category="Metalwork">Metalwork</button>
+          <button class="chip" type="button" data-category="Home Decor">Home Decor</button>
         </div>
       </section>
 
-      <section class="section-block container reveal">
+      <section class="section-block reveal">
+        <div class="product-grid" id="productsGrid"></div>
+      </section>
+
+      <section class="section-block reveal" id="cartPreviewSection">
         <div class="section-head">
-          <p class="eyebrow">Featured Products</p>
-          <h2>Crafted To Be Collected</h2>
+          <p class="eyebrow">Cart Section</p>
+          <h2>Quick Cart Preview</h2>
         </div>
-        <div class="product-grid" id="featuredProducts"></div>
-      </section>
-
-      <section class="section-block container reveal">
-        <div class="section-head">
-          <p class="eyebrow">Featured Artisans</p>
-          <h2>The Hands Behind The Heritage</h2>
-        </div>
-        <div class="artisan-grid" id="featuredArtisans"></div>
-      </section>
-
-      <section class="section-block container about-block reveal" id="about">
-        <div>
-          <p class="eyebrow">About BharatCart</p>
-          <h2>A Design Tribute To Indian Craftsmanship</h2>
-          <p>
-            This static website concept is built to spotlight artisans and products through premium
-            UI design. Every interaction focuses on elegance, clarity, and storytelling.
-          </p>
-        </div>
-        <div class="stats-grid glass">
-          <article>
-            <h3>120+</h3>
-            <p>Curated products</p>
-          </article>
-          <article>
-            <h3>38</h3>
-            <p>Craft clusters represented</p>
-          </article>
-          <article>
-            <h3>4.9/5</h3>
-            <p>Design concept rating</p>
-          </article>
+        <div class="inline-cart glass" id="inlineCartSection">
+          <ul class="inline-cart-items" id="inlineCartItems"></ul>
+          <div class="inline-cart-foot">
+            <div>
+              <p>Current Total</p>
+              <h3 id="inlineCartTotal">INR 0</h3>
+            </div>
+            <button class="btn btn-primary" type="button" data-cart-toggle>Open Cart Drawer</button>
+          </div>
         </div>
       </section>
     </main>

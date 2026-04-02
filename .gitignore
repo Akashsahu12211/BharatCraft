@@ -1,37 +1,24 @@
-# Dependencies
-node_modules/
-.pnpm-store/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
-# Environment Variables
-.env
-.env.*
-!.env.example
-
-# OS stuff
-.DS_Store
-Thumbs.db
-
-# IDE stuff
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Build/Dist
-dist/
-build/
-.next/
-out/
-
-# Firebase stuff
-.firebase/
-firebase-debug.log
-firestore-debug.log
-pubsub-debug.log
-
-# Temporary files
-/tmp/
+# Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
