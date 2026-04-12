@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Meet the artisans preserving India's cultural craftsmanship." />
+    <meta name="description" content="Track your BharatCart orders and delivery status." />
     <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,9 +13,9 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/components.css" />
-    <title>Artisans | BharatCart</title>
+    <title>My Orders | BharatCart</title>
   </head>
-  <body data-page="artisans">
+  <body data-page="orders">
     <header class="site-header" id="top">
       <div class="container nav-shell glass">
         <a class="brand" href="index.html" aria-label="BharatCart home">
@@ -39,9 +39,9 @@
           <input
             class="market-search-input"
             type="search"
-            placeholder="Search artisan names, craft clusters"
+            placeholder="Search products, crafts, artisans"
             data-global-search
-            aria-label="Search artisans"
+            aria-label="Search products"
           />
         </div>
 
@@ -50,23 +50,12 @@
           <a href="products.html">Products</a>
           <a href="artisans.html">Artisans</a>
           <a href="product-details.html">Details</a>
+          <a href="orders.html" data-auth-required>My Orders</a>
           <a href="login.html">Login</a>
           <a href="signup.html">Sign Up</a>
         </nav>
 
         <div class="market-actions">
-          <div class="menu-popover-wrap">
-            <button class="action-pill" type="button" data-menu-trigger="moreMenu" aria-expanded="false">
-              More
-            </button>
-            <div class="menu-popover" id="moreMenu" data-menu-content>
-              <h4>Artisan Programs</h4>
-              <a href="signup.html?role=artisan">Become a Seller</a>
-              <a href="products.html">Bestseller Crafts</a>
-              <a href="signup.html">Support</a>
-            </div>
-          </div>
-
           <button class="cart-chip" type="button" aria-label="Open cart" data-cart-toggle>
             Cart
             <span data-cart-count>0</span>
@@ -77,27 +66,34 @@
 
     <main class="page-main container">
       <section class="page-hero reveal">
-        <p class="eyebrow">Craft Community</p>
-        <h1>Artisans Of BharatCart</h1>
-        <p>Each maker profile highlights location, medium, and heritage-inspired modern design.</p>
-      </section>
-
-      <section class="filters-wrap reveal">
-        <div class="search-shell glass">
-          <input type="search" id="artisanSearch" placeholder="Search artisan name, location or craft" />
-        </div>
-        <div class="category-row" id="artisanFilters">
-          <button class="chip is-active" type="button" data-craft="All">All Crafts</button>
-          <button class="chip" type="button" data-craft="Pottery">Pottery</button>
-          <button class="chip" type="button" data-craft="Textile">Textile</button>
-          <button class="chip" type="button" data-craft="Metal">Metal</button>
-          <button class="chip" type="button" data-craft="Wood">Wood</button>
-          <button class="chip" type="button" data-craft="Painting">Painting</button>
-        </div>
+        <p class="eyebrow">Order Tracking</p>
+        <h1>My Orders</h1>
+        <p>Track your placed orders and delivery progress in one place.</p>
       </section>
 
       <section class="section-block reveal">
-        <div class="artisan-grid" id="artisansGrid"></div>
+        <div class="product-grid" id="ordersList"></div>
+      </section>
+
+      <section class="section-block reveal" id="adminOrderSection" hidden>
+        <div class="section-head">
+          <p class="eyebrow">Admin</p>
+          <h2>Update Order Status</h2>
+        </div>
+        <form class="auth-form glass" id="adminOrderForm" novalidate>
+          <label for="adminOrderId">Order ID</label>
+          <input id="adminOrderId" name="orderId" type="text" placeholder="Paste order id" required />
+
+          <label for="adminOrderStatus">Status</label>
+          <select id="adminOrderStatus" name="status" class="sort-select" required>
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+
+          <button class="btn btn-primary btn-block" type="submit">Update Status</button>
+        </form>
       </section>
     </main>
 

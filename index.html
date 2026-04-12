@@ -38,6 +38,16 @@
           <span></span>
         </button>
 
+        <div class="market-search-shell">
+          <input
+            class="market-search-input"
+            type="search"
+            placeholder="Search for handcrafted products, artisans and categories"
+            data-global-search
+            aria-label="Search products and artisans"
+          />
+        </div>
+
         <nav class="nav-links" id="primaryMenu">
           <a href="index.html">Home</a>
           <a href="products.html">Products</a>
@@ -47,10 +57,37 @@
           <a href="signup.html">Sign Up</a>
         </nav>
 
-        <button class="cart-chip" type="button" aria-label="Open cart" data-cart-toggle>
-          Cart
-          <span data-cart-count>0</span>
-        </button>
+        <div class="market-actions">
+          <div class="menu-popover-wrap">
+            <button class="action-pill" type="button" data-menu-trigger="accountMenu" aria-expanded="false">
+              Account
+            </button>
+            <div class="menu-popover" id="accountMenu" data-menu-content>
+              <h4>Your Account</h4>
+              <a href="signup.html">My Profile</a>
+              <a href="orders.html" data-auth-required>My Orders</a>
+              <a href="products.html" data-auth-required>Wishlist</a>
+              <a href="signup.html?role=artisan">Become an Artisan</a>
+            </div>
+          </div>
+
+          <div class="menu-popover-wrap">
+            <button class="action-pill" type="button" data-menu-trigger="moreMenu" aria-expanded="false">
+              More
+            </button>
+            <div class="menu-popover" id="moreMenu" data-menu-content>
+              <h4>More</h4>
+              <a href="artisans.html">Top Artisan Stores</a>
+              <a href="products.html">Deal Zone</a>
+              <a href="signup.html">Customer Care</a>
+            </div>
+          </div>
+
+          <button class="cart-chip" type="button" aria-label="Open cart" data-cart-toggle>
+            Cart
+            <span data-cart-count>0</span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -78,6 +115,59 @@
         </div>
       </section>
 
+      <section class="section-block section-tight container reveal">
+        <div class="quick-category-row">
+          <a href="products.html" class="quick-category-card">
+            <span>🏺</span>
+            <p>For You</p>
+          </a>
+          <a href="products.html" class="quick-category-card">
+            <span>🧵</span>
+            <p>Fashion</p>
+          </a>
+          <a href="products.html" class="quick-category-card">
+            <span>🖼️</span>
+            <p>Paintings</p>
+          </a>
+          <a href="products.html" class="quick-category-card">
+            <span>🪙</span>
+            <p>Jewelry</p>
+          </a>
+          <a href="products.html" class="quick-category-card">
+            <span>🪵</span>
+            <p>Woodwork</p>
+          </a>
+          <a href="products.html" class="quick-category-card">
+            <span>🕯️</span>
+            <p>Home Decor</p>
+          </a>
+          <a href="products.html" class="quick-category-card">
+            <span>🎁</span>
+            <p>Gift Box</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="section-block section-tight container reveal">
+        <div class="banner-grid">
+          <article class="banner-card banner-warm">
+            <p class="eyebrow">Festival Deals</p>
+            <h3>Upto 40% Off On Handmade Decor</h3>
+            <a href="products.html">Shop now</a>
+          </article>
+          <article class="banner-card banner-cool">
+            <p class="eyebrow">Artisan Drops</p>
+            <h3>New Arrivals Added Every Week</h3>
+            <a href="artisans.html">Explore artisans</a>
+          </article>
+          <article class="banner-card banner-neutral">
+            <p class="eyebrow">Premium Edit</p>
+            <h3>Collectible Pieces Under INR 3000</h3>
+            <a href="products.html">View collection</a>
+          </article>
+        </div>
+      </section>
+
       <section class="section-block container reveal">
         <div class="section-head">
           <p class="eyebrow">Featured Products</p>
@@ -88,10 +178,34 @@
 
       <section class="section-block container reveal">
         <div class="section-head">
+          <p class="eyebrow">Flash Picks</p>
+          <h2>Limited Time Marketplace Deals</h2>
+        </div>
+        <div class="product-grid" id="dealProducts"></div>
+      </section>
+
+      <section class="section-block container reveal">
+        <div class="section-head">
           <p class="eyebrow">Featured Artisans</p>
           <h2>The Hands Behind The Heritage</h2>
         </div>
         <div class="artisan-grid" id="featuredArtisans"></div>
+      </section>
+
+      <section class="section-block container reveal">
+        <div class="section-head">
+          <p class="eyebrow">Top Stores</p>
+          <h2>Popular Artisan Storefronts</h2>
+        </div>
+        <div class="artisan-grid" id="topArtisans"></div>
+      </section>
+
+      <section class="section-block container reveal">
+        <div class="section-head">
+          <p class="eyebrow">Suggested For You</p>
+          <h2>Inspired By Your Browsing</h2>
+        </div>
+        <div class="product-grid" id="suggestedProducts"></div>
       </section>
 
       <section class="section-block container about-block reveal" id="about">
@@ -148,7 +262,7 @@
         <p>Total</p>
         <h4 id="cartTotal">INR 0</h4>
       </div>
-      <button class="btn btn-primary btn-block" type="button" disabled>Checkout Disabled</button>
+      <button class="btn btn-primary btn-block" type="button" data-checkout>Checkout</button>
     </aside>
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
 

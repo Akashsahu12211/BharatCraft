@@ -35,6 +35,16 @@
           <span></span>
         </button>
 
+        <div class="market-search-shell">
+          <input
+            class="market-search-input"
+            type="search"
+            placeholder="Search by product, artisan, shop, or place"
+            data-global-search
+            aria-label="Search marketplace"
+          />
+        </div>
+
         <nav class="nav-links" id="primaryMenu">
           <a href="index.html">Home</a>
           <a href="products.html">Products</a>
@@ -44,10 +54,25 @@
           <a href="signup.html">Sign Up</a>
         </nav>
 
-        <button class="cart-chip" type="button" aria-label="Open cart" data-cart-toggle>
-          Cart
-          <span data-cart-count>0</span>
-        </button>
+        <div class="market-actions">
+          <div class="menu-popover-wrap">
+            <button class="action-pill" type="button" data-menu-trigger="accountMenu" aria-expanded="false">
+              Account
+            </button>
+            <div class="menu-popover" id="accountMenu" data-menu-content>
+              <h4>Your Account</h4>
+              <a href="signup.html">My Profile</a>
+              <a href="orders.html" data-auth-required>My Orders</a>
+              <a href="products.html" data-auth-required>Wishlist</a>
+              <a href="signup.html?role=artisan">Become an Artisan</a>
+            </div>
+          </div>
+
+          <button class="cart-chip" type="button" aria-label="Open cart" data-cart-toggle>
+            Cart
+            <span data-cart-count>0</span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -63,9 +88,25 @@
       <section class="section-block reveal">
         <div class="section-head">
           <p class="eyebrow">Related Picks</p>
-          <h2>You May Also Like</h2>
+          <h2>More From This Craft Story</h2>
         </div>
         <div class="product-grid" id="relatedProducts"></div>
+      </section>
+
+      <section class="section-block reveal">
+        <div class="section-head">
+          <p class="eyebrow">By Location</p>
+          <h2>Popular In This Place</h2>
+        </div>
+        <div class="product-grid" id="cityProducts"></div>
+      </section>
+
+      <section class="section-block reveal">
+        <div class="section-head">
+          <p class="eyebrow">Travel Suggestions</p>
+          <h2>Famous Places To Visit Nearby</h2>
+        </div>
+        <div class="attraction-list" id="localAttractions"></div>
       </section>
     </main>
 
@@ -97,7 +138,7 @@
         <p>Total</p>
         <h4 id="cartTotal">INR 0</h4>
       </div>
-      <button class="btn btn-primary btn-block" type="button" disabled>Checkout Disabled</button>
+      <button class="btn btn-primary btn-block" type="button" data-checkout>Checkout</button>
     </aside>
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
 

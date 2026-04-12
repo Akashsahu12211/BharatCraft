@@ -53,10 +53,22 @@
         <div class="auth-copy">
           <p class="eyebrow">Welcome Back</p>
           <h1>Login To Continue Exploring Craft</h1>
-          <p>Use the clean static form UI below. This is a frontend-only validation experience.</p>
+          <p>Login to access your cart, place orders, and track delivery updates.</p>
         </div>
 
         <form class="auth-form glass" data-auth-form data-mode="login" novalidate>
+          <p class="auth-role-title">Login as</p>
+          <div class="auth-role-grid" role="radiogroup" aria-label="Choose login type">
+            <label class="auth-role-option">
+              <input type="radio" name="loginType" value="customer" checked />
+              <span>Customer</span>
+            </label>
+            <label class="auth-role-option">
+              <input type="radio" name="loginType" value="artisan" />
+              <span>Artisan</span>
+            </label>
+          </div>
+
           <label for="loginEmail">Email</label>
           <input id="loginEmail" type="email" name="email" placeholder="you@example.com" required />
           <p class="field-error" data-error-for="email"></p>
