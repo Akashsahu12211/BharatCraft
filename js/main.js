@@ -11,6 +11,7 @@
       craft: "Blue Pottery",
       image: "assets/images/artisan-1.svg"
     },
+    
     {
       id: 2,
       name: "Tariq Lone",
