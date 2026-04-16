@@ -194,8 +194,8 @@ main {
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.66);
   padding: 20px;
-}
-
+  
+} 
 .stats-grid h3 {
   font-size: 2rem;
 }
@@ -342,4 +342,5 @@ main {
   .section-block {
     margin-top: 72px;
   }
+  
 }
